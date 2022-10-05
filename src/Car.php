@@ -33,6 +33,6 @@ class Car
 
     public function __destruct()
     {
-        echo "Car $this->number_plate Destroyed </br>" . PHP_EOL;
+        // echo "Car $this->number_plate Destroyed </br>" . PHP_EOL;
     }
 }
