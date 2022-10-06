@@ -15,8 +15,7 @@ $liters = $car->getConsumedLiters();
 
 $car = null;
 
-//var_dump($liters);
-
+var_dump($liters);
 
 /**
  * stdClass examples
