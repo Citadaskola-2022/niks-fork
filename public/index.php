@@ -2,24 +2,14 @@
 
 declare(strict_types=1);
 
-require_once __DIR__ . '/../app/Car.php';
-require_once __DIR__ . '/../app/Driver.php';
-require_once __DIR__ . '/../app/Licence.php';
+spl_autoload_register(function ($class) {
+    require_once __DIR__ . '/../' . lcfirst(str_replace('\\', '/', $class)) . '.php';
+});
 
-require_once __DIR__ . '/../app/Invoices/Credit/Bill.php';
-require_once __DIR__ . '/../app/Invoices/Invoice/Bill.php';
-require_once __DIR__ . '/../app/Invoices/Subscription/Bill.php';
-require_once __DIR__ . '/../app/Invoices/Subscription/CustomerProfile.php';
+use \Roberts\Invoices\Subscription\Bill;
 
-require_once __DIR__ . '/../app/Notifications/Email.php';
+$subBill = new Bill();
 
-use \App\Invoices\Credit\Bill as CreditBill;
-use \App\Invoices\Invoice\Bill as InvoiceBill;
-use \App\Invoices\Subscription\Bill as SubInvoice;
+var_dump($subBill);
 
-$creditBill = new CreditBill();
-$subBill = new SubInvoice();
-
-var_dump($creditBill, $subBill);
-
-//require __DIR__ . '/../bootstrap/app.php';
+//require __DIR__ . '/../bootstrap/roberts.php';
