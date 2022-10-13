@@ -4,20 +4,13 @@ declare(strict_types=1);
 
 class Car
 {
-    private ?int $odometer;
-    private string $number_plate;
-    private float $fuelConsumption;
+    public ?Driver $driver = null;
 
     public function __construct(
-        int $odometer,
-        string $number_plate,
-        float $fuelConsumption
-    )
-    {
-        $this->odometer = $odometer;
-        $this->number_plate = $number_plate;
-        $this->fuelConsumption = $fuelConsumption;
-    }
+        private string $number_plate,
+        private float $fuelConsumption,
+        private ?int $odometer = null,
+    ) {}
 
     public function addKilometers(int $kilometer): Car
     {
@@ -34,5 +27,13 @@ class Car
     public function __destruct()
     {
         // echo "Car $this->number_plate Destroyed </br>" . PHP_EOL;
+    }
+
+    /**
+     * @return Driver|null
+     */
+    public function getDriver(): ?Driver
+    {
+        return $this->driver;
     }
 }
