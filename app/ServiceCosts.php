@@ -1,6 +1,6 @@
 <?php
 
-namespace app;
+namespace App;
 
 class ServiceCosts
 {
@@ -16,7 +16,6 @@ class ServiceCosts
     {
         echo "Total amount is {$this->amount} for this service";
     }
-
 
 
 }
