@@ -4,31 +4,21 @@ declare(strict_types=1);
 
 require __DIR__ . '/../bootstrap/app.php';
 
-use Ramsey\Uuid\Uuid;
+$coffee = new \App\Cafe\CoffeeWithMilk();
 
-//$transaction = new \App\ServiceCosts(200);
-//$transaction->process();
+$coffee->volume = 1000;
 
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
-$dotenv->load();
+$coffee->prepare(30);
+$coffee->prepare(30);
+$coffee->prepare(30);
+$coffee->prepare(30);
 
-//echo '<pre>';
-var_dump($_ENV['DB_USER']);
-var_dump($_ENV['DB_PASSWORD']);
+makeCoffee($coffee);
 
-//$inflector = InflectorFactory::create()->build();
-//    $name = 'apple';
-//printf(
-//   'vienskaitlis: %s, daudzskaitlis: %s',
-//    $name, $inflector->pluralize($name)
-//);
-//echo '<br>';
+$coffee->brew();
 
+    function makeCoffee(\App\Cafe\Coffee $coffee) {
+        $coffee->addmilk();
+}
 
-$uuid = Uuid::uuid4();
-
-printf(
-    "UUID: %s\nVersion: %d\n",
-    $uuid->toString(),
-    $uuid->getFields()->getVersion()
-);
+$coffee->brew();
