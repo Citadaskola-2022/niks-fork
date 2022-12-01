@@ -32,4 +32,3 @@ printf(
     $uuid->toString(),
     $uuid->getFields()->getVersion()
 );
-
