@@ -2,29 +2,33 @@
 
 declare(strict_types=1);
 
+require __DIR__ . '/../bootstrap/app.php';
 
-spl_autoload_register(function ($class){
-    echo 'using class: ' . $class . '<br/>';
-    $class = __DIR__ . '/../' . lcfirst(str_replace('\\','/',$class)) . '.php';
-});
+use Ramsey\Uuid\Uuid;
 
-use \src\Invoices\Sub\Bill;
+//$transaction = new \App\ServiceCosts(200);
+//$transaction->process();
 
-spl_autoload_register(function ($class) {
-    require_once __DIR__ . '/../' . lcfirst(str_replace('\\', '/', $class)) . '.php';
-});
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
+$dotenv->load();
 
-use \Roberts\Invoices\Subscription\Bill;
+//echo '<pre>';
+var_dump($_ENV['DB_USER']);
+var_dump($_ENV['DB_PASSWORD']);
+
+//$inflector = InflectorFactory::create()->build();
+//    $name = 'apple';
+//printf(
+//   'vienskaitlis: %s, daudzskaitlis: %s',
+//    $name, $inflector->pluralize($name)
+//);
+//echo '<br>';
 
 
-$subBill = new Bill();
+$uuid = Uuid::uuid4();
 
-var_dump($subBill);
-
-
-
-
-//require __DIR__ . '/../bootstrap/app.php';
-=======
-//require __DIR__ . '/../bootstrap/roberts.php';
-
+printf(
+    "UUID: %s\nVersion: %d\n",
+    $uuid->toString(),
+    $uuid->getFields()->getVersion()
+);
