@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Programmesana 2 || Frontend</title>
+
+  <script src="https://unpkg.com/vue@3"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    .red-text {
+      color: red;
+    }
+    .green-text{
+      color: green;
+    }
+  </style>
+</head>
+<body class="bg-gray-800 text-white h-full grid place-items-center">
+<!--<h2>Omegalul</h2>-->
+<!--<ul>-->
+<!--  <li>John Doe</li>-->
+<!--  <li>Jane Doe</li>-->
+<!--  <li>Foo Bar</li>-->
+<!--</ul>-->
+
+  <div id="app">
+    <p>{{ greeting }} {{(greeting.length)}}</p>
+
+    <input
+            class="bg-gray-700"
+            v-model="greeting"
+    >
+    <br>
+    <button
+    :class="active? 'green-text':'red-text'"
+    @click="toggle"
+    >Click me</button>
+  </div>
+
+  <script>
+    Vue.createApp({
+      data() {
+        return {
+          greeting: 'amogus',
+          active: false,
+        }
+      },
+      mounted(){
+      setTimeout(() => {
+        this.greeting = 'changed'
+      },3000)
+      },
+      method: {
+        toggle (){
+          this.active = !this.active
+        }
+      }
+    }).mount('#app');
+  </script>
+</body>
+</html>
