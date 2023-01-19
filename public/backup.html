@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en" class="h-full" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Programmesana 2 || Frontend2</title>
+
+  <script src="https://unpkg.com/vue@3"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    .red-text {
+      color: red;
+    }
+    .green-text{
+      color: green;
+    }
+  </style>
+</head>
+<body class="bg-gray-800 text-white h-full grid place-items-center">
+<div id="app">
+  <section v-show="WIPAssignments.length">
+    <h2 class="font-bold mb-2">WIP</h2>
+      <ul>
+        <li v-for="assignment in WIPAssignments"
+            :key="assignment.id">
+          <label>
+            {{ assignment.name }}
+
+            <input type="checkbox" v-model="assignment.complete">
+          </label>
+        </li>
+      </ul>
+  </section>
+
+  <section v-show="completedAssignments.length" class="mt-8">
+    <h2 class="font-bold mb-2">Complete</h2>
+    <ul>
+      <li v-for="assignment in completedAssignments"
+          :key="assignment.id">
+        <label>
+          {{ assignment.name }}
+
+          <input type="checkbox" v-model="assignment.complete">
+        </label>
+      </li>
+    </ul>
+  </section>
+</div>
+
+  <script>
+    let app = {
+      data() {
+        return {
+          assignments: [
+            {name: 'Something 1', complete: false, id: 1},
+            {name: 'Something 2', complete: false, id: 2},
+            {name: 'Something 3', complete: false, id: 3}
+          ]
+        }
+      },
+      computed: {
+        WIPAssignments() {
+          return this.assignments.filter(assignment => ! assignment.complete);
+        },
+        completedAssignments() {
+          return this.assignments.filter(assignment => assignment.complete);
+        }
+      }
+    };
+    Vue.createApp(app).mount('#app');
+  </script>
+</body>
+</html>

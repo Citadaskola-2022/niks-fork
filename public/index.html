@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="h-full">
+<html lang="en" class="h-full" xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport"
@@ -20,46 +20,29 @@
   </style>
 </head>
 <body class="bg-gray-800 text-white h-full grid place-items-center">
-<!--<h2>Omegalul</h2>-->
-<!--<ul>-->
-<!--  <li>John Doe</li>-->
-<!--  <li>Jane Doe</li>-->
-<!--  <li>Foo Bar</li>-->
-<!--</ul>-->
-
   <div id="app">
-    <p>{{ greeting }} {{(greeting.length)}}</p>
-
-    <input
-            class="bg-gray-700"
-            v-model="greeting"
-    >
-    <br>
-    <button
-    :class="active? 'green-text':'red-text'"
-    @click="toggle"
-    >Click me</button>
+    <app-button>Submit</app-button>
+    <app-button>Click</app-button>
   </div>
 
-  <script>
-    Vue.createApp({
-      data() {
-        return {
-          greeting: 'amogus',
-          active: false,
-        }
-      },
-      mounted(){
-      setTimeout(() => {
-        this.greeting = 'changed'
-      },3000)
-      },
-      method: {
-        toggle (){
-          this.active = !this.active
-        }
-      }
-    }).mount('#app');
+    <script>
+      let app = {
+        components: {
+          'app-button': {
+            template: `
+            <button class="bg-gray-200 hover:bg-gray-400 border rounded px-5 py-2 disabled:cursor-not-allowed" :disabled="processing">
+                <slot />
+            </button>
+            `,
+            data() {
+              return {
+                processing: true
+              }
+            }
+            }
+          }
+      };
+    Vue.createApp(app).mount('#app');
   </script>
 </body>
 </html>
